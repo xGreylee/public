@@ -1,4 +1,4 @@
-import { SUBMIT_GUESS, RESET_GUESS } from '../actionTypes'
+import { SUBMIT_GUESS, RESET_GUESS, INPUT_CHANGE } from '../actionTypes'
 
 function getInitialState() {
     return {
@@ -23,10 +23,14 @@ export default function(state = getInitialState(), action) {
                     output = '小了'
                 }
             }
-            return Object.assign({}, state, { input, output })
+            return { ...state, input, output }
 
         case RESET_GUESS:
             return { ...state, ...getInitialState()}
+
+        case INPUT_CHANGE: 
+            const { value } = action.payload
+            return { ...state, input: value }
 
         default:
             return state

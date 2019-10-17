@@ -1,2 +1,3 @@
 export const SUBMIT_GUESS = "SUBMIT_GUESS"
 export const RESET_GUESS = "RESET_GUESS"
+export const INPUT_CHANGE = "INPUT_CHANGE"

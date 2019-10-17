@@ -12,12 +12,12 @@ class App extends React.Component {
 	}
 
 	handleChange(event) {
-		this.setState({ input: event.target.value })
+		this.props.input_change(event.target.value)
 	}
 
 	handleSubmit(event) {
-		console.log(`提交的数字：${JSON.stringify(this.state.input)}`)
-		const guessed = Number(this.state.input)
+		console.log(`提交的数字：${JSON.stringify(this.props.input)}`)
+		const guessed = Number(this.props.input)
 		this.props.submit_guess(guessed)
 		event.preventDefault()
 	}
@@ -32,7 +32,7 @@ class App extends React.Component {
 		return(
 			<div className="App">
 				<header className="App-header">
-					<p>{output}</p>
+					<p>RESULT: {output}</p>
 					<form onSubmit={this.handleSubmit}>
 						<label>
 							<input type="number" onChange={this.handleChange}></input>
