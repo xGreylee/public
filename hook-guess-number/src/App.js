@@ -1,22 +1,16 @@
 import React, { useState, useEffect }from 'react'
-import './App.css';
-
-const initialState = {
-	input: '',
-	hidden: Math.floor(Math.random() * 100),
-	output: ''
-}
+import './App.css'
 
 function App(props) {
 	const[input, setInput] = useState('')
 	const [output, setOutput] = useState('')
-	const [params, setParams] = useState(initialState)
-	console.log(`params: ${JSON.stringify(params)}`)
+	const [hidden, setHidden] = useState(Math.floor(Math.random() * 100))
 
+	console.log(`params: { input: ${input}, hidden: ${hidden}, output: ${output}}`)
 	function handleSubmit(e) {
 		const guessed = Number(input)
-		if (guessed !== params.hidden) {
-			if (guessed > params.hidden) {
+		if (guessed !== hidden) {
+			if (guessed > hidden) {
 				setOutput('大了')
 			} else {
 				setOutput('小了')
@@ -24,7 +18,6 @@ function App(props) {
 		} else {
 			setOutput('中了')
 		}
-		setParams({ ...params, input, output })
 		e.preventDefault()
 	}
 
@@ -38,7 +31,11 @@ function App(props) {
 							<input type="number" onChange={(e) => setInput(e.target.value)}></input>
 						</label>
 						<input type="submit" value="提交"></input>
-						<input type="reset" value="重置" onClick={() => setParams({ input: setInput(''), hidden: Math.floor(Math.random() * 100), output: setOutput('') })}></input>
+						<input type="reset" value="重置" onClick={() => {
+							setInput('')
+							setHidden(Math.floor(Math.random() * 100))
+							setOutput('')
+						}}></input>
 					</form>
 				</div>
 			</header>
